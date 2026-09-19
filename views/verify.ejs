@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Verificación de Constancia · CUEJ</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="center-page">
+  <div class="card verify-card">
+    <img src="/img/logo_cuej.png" alt="CUEJ" class="verify-logo" />
+
+    <% if (!encontrada) { %>
+      <div class="verify-status verify-bad">
+        <div class="icon">✕</div>
+        <h2>Constancia no encontrada</h2>
+        <p>El código escaneado no corresponde a ninguna constancia registrada en esta institución. No se puede certificar su autenticidad.</p>
+      </div>
+
+    <% } else if (revocada) { %>
+      <div class="verify-status verify-warn">
+        <div class="icon">!</div>
+        <h2>Constancia revocada</h2>
+        <p>Esta constancia fue emitida por la institución pero posteriormente fue revocada y ya no es válida. Folio: <strong><%= c.folio %></strong></p>
+      </div>
+
+    <% } else { %>
+      <div class="verify-status verify-ok">
+        <div class="icon">✓</div>
+        <h2>Constancia Certificada</h2>
+        <p class="legend">Verificada en libros de la institución.</p>
+      </div>
+
+      <table class="verify-table">
+        <tr><th>Folio</th><td><%= c.folio %></td></tr>
+        <tr><th>Alumno</th><td><%= c.nombre %> <%= c.apellido_paterno %> <%= c.apellido_materno %></td></tr>
+        <tr><th>Matrícula</th><td><%= c.matricula %></td></tr>
+        <tr><th>Programa</th><td><%= c.programa %></td></tr>
+        <% if (c.plan_estudios) { %><tr><th>Plan de estudios</th><td><%= c.plan_estudios %></td></tr><% } %>
+        <% if (c.promedio) { %><tr><th>Promedio</th><td><%= c.promedio %></td></tr><% } %>
+        <% if (c.creditos_obtenidos) { %><tr><th>Créditos</th><td><%= c.creditos_obtenidos %> de <%= c.creditos_totales %></td></tr><% } %>
+        <% if (c.ciclo_inicio) { %><tr><th>Ciclo</th><td><%= c.ciclo_inicio %> a <%= c.ciclo_fin %></td></tr><% } %>
+        <tr><th>Fecha de emisión</th><td><%= c.fecha_emision %></td></tr>
+      </table>
+    <% } %>
+
+    <p class="hint">Verificación automática — no requiere iniciar sesión.</p>
+  </div>
+</body>
+</html>
