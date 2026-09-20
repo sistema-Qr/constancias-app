@@ -1,0 +1,21 @@
+<aside class="sidebar">
+  <div class="sidebar-logo"><img src="/img/logo_cuej.png" alt="CUEJ" /></div>
+
+  <nav class="sidebar-nav">
+    <a href="/dashboard" class="<%= activo === 'dashboard' ? 'active' : '' %>">Panel</a>
+    <a href="/constancias/nueva" class="<%= activo === 'nueva' ? 'active' : '' %>">+ Nueva constancia</a>
+    <% if (empleado.rol === 'admin') { %>
+      <a href="/empleados" class="<%= activo === 'empleados' ? 'active' : '' %>">Empleados</a>
+    <% } %>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <%= empleado.nombre_completo %>
+      <span class="badge-rol"><%= empleado.rol === 'admin' ? 'Administrador' : 'Usuario' %></span>
+    </div>
+    <form method="POST" action="/logout">
+      <button class="btn-link" type="submit">Cerrar sesión</button>
+    </form>
+  </div>
+</aside>
