@@ -41,6 +41,10 @@
                 <input type="radio" name="tipo" value="docente" onchange="actualizarCamposPorTipo()" <%= tipoActual === 'docente' ? 'checked' : '' %> />
                 Constancia de docente
               </label>
+              <label class="tipo-opcion">
+                <input type="radio" name="tipo" value="servicio_social" onchange="actualizarCamposPorTipo()" <%= tipoActual === 'servicio_social' ? 'checked' : '' %> />
+                Constancia de servicio social
+              </label>
             </div>
           <% } %>
         </fieldset>
