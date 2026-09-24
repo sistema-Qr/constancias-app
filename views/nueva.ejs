@@ -26,7 +26,7 @@
           <% const tipoActual = valores.tipo || 'termino'; %>
           <% if (editando) { %>
             <input type="hidden" name="tipo" value="<%= tipoActual %>" />
-            <p><strong><%= { termino: 'Constancia de término', avance: 'Constancia de avance', docente: 'Constancia de docente' }[tipoActual] %></strong> (el tipo no se puede cambiar después de creada la constancia)</p>
+            <p><strong><%= { termino: 'Constancia de término', avance: 'Constancia de avance', docente: 'Constancia de docente', servicio_social: 'Constancia de servicio social' }[tipoActual] %></strong> (el tipo no se puede cambiar después de creada la constancia)</p>
           <% } else { %>
             <div class="tipo-selector">
               <label class="tipo-opcion">
