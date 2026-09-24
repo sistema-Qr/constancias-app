@@ -78,7 +78,7 @@ function validarFormulario(b) {
   if (!b.nombre || !b.apellido_paterno) {
     return 'Nombre y apellido paterno son obligatorios.';
   }
-  if ((b.tipo === 'termino' || b.tipo === 'avance') && (!b.matricula || !b.programa)) {
+  if ((b.tipo === 'termino' || b.tipo === 'avance' || b.tipo === 'servicio_social') && (!b.matricula || !b.programa)) {
     return 'Matrícula y programa son obligatorios para constancias de término o avance.';
   }
   return null;
