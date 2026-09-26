@@ -100,7 +100,7 @@
               const programaEnLista = todosLosProgramas.includes(programaActual);
             %>
 
-            <label>Licenciatura / Posgrado *</label>
+            <label id="label-programa">Licenciatura / Posgrado *</label>
             <select name="programa" id="programa_select" onchange="onProgramaChange()">
               <option value="" <%= !programaActual ? 'selected' : '' %>>-- Selecciona --</option>
               <optgroup label="Licenciaturas">
