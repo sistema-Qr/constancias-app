@@ -108,12 +108,12 @@
                   <option <%= programaActual === p ? 'selected' : '' %>><%= p %></option>
                 <% }) %>
               </optgroup>
-              <optgroup label="Maestrías">
+              <optgroup label="Maestrías" id="optgroup-maestrias">
                 <% maestrias.forEach(p => { %>
                   <option <%= programaActual === p ? 'selected' : '' %>><%= p %></option>
                 <% }) %>
               </optgroup>
-              <optgroup label="Doctorados">
+              <optgroup label="Doctorados" id="optgroup-doctorados">
                 <% doctorados.forEach(p => { %>
                   <option <%= programaActual === p ? 'selected' : '' %>><%= p %></option>
                 <% }) %>
