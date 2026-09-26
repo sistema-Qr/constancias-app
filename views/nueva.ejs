@@ -235,6 +235,24 @@
       document.getElementById('campos-docente').style.display = esAlumno ? 'none' : 'block';
       document.querySelector('input[name="matricula"]').required = esAlumno;
       document.querySelector('[name="programa"]').required = esAlumno;
+      // Servicio social: solo licenciaturas (las maestrías/doctorados no aplican)
+      var soloLicenciatura = (tipo === 'servicio_social');
+      var ogMaestrias = document.getElementById('optgroup-maestrias');
+      var ogDoctorados = document.getElementById('optgroup-doctorados');
+      var labelPrograma = document.getElementById('label-programa');
+      var selPrograma = document.getElementById('programa_select');
+
+      if (ogMaestrias) ogMaestrias.style.display = soloLicenciatura ? 'none' : '';
+      if (ogDoctorados) ogDoctorados.style.display = soloLicenciatura ? 'none' : '';
+      if (labelPrograma) labelPrograma.textContent = soloLicenciatura ? 'Licenciatura *' : 'Licenciatura / Posgrado *';
+
+      if (soloLicenciatura && selPrograma) {
+        var opcionActual = selPrograma.options[selPrograma.selectedIndex];
+        var grupoActual = opcionActual ? opcionActual.parentElement.id : '';
+        if (grupoActual === 'optgroup-maestrias' || grupoActual === 'optgroup-doctorados') {
+          selPrograma.value = '';
+        }
+      }
     }
     actualizarCamposPorTipo();
 
