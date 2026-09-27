@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Empleados · Sistema de Constancias</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <%- include('partials/sidebar', { empleado, activo }) %>
+
+    <main class="main-content">
+      <div class="row-between">
+        <h2>Empleados</h2>
+        <a href="/empleados/nuevo" class="btn btn-primary">+ Nuevo empleado</a>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Puesto</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% empleados.forEach(e => { %>
+            <tr>
+              <td><%= e.username %></td>
+              <td><%= e.nombre_completo %></td>
+              <td><%= e.puesto || '—' %></td>
+              <td><span class="badge <%= e.rol === 'admin' ? 'badge-ok' : 'badge-neutral' %>"><%= e.rol === 'admin' ? 'Administrador' : 'Usuario' %></span></td>
+              <td><span class="badge <%= e.activo ? 'badge-ok' : 'badge-off' %>"><%= e.activo ? 'Activo' : 'Inactivo' %></span></td>
+              <td class="actions">
+                <% if (e.activo) { %>
+                  <form method="POST" action="/empleados/<%= e.id %>/desactivar" onsubmit="return confirm('¿Desactivar a este empleado? Ya no podrá iniciar sesión.');" style="display:inline">
+                    <button class="btn-link btn-danger" type="submit">Desactivar</button>
+                  </form>
+                <% } else { %>
+                  <form method="POST" action="/empleados/<%= e.id %>/activar" style="display:inline">
+                    <button class="btn-link" type="submit">Activar</button>
+                  </form>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </main>
+  </div>
+</body>
+</html>
