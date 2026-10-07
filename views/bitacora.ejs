@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bitácora · Sistema de Constancias</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <%- include('partials/sidebar', { empleado, activo }) %>
+
+    <main class="main-content">
+      <h2>Bitácora de cambios</h2>
+      <p class="hint">Registro de las últimas 300 acciones: creación, edición, revocación y eliminación de constancias.</p>
+
+      <% const etiquetasAccion = { crear: 'Creó', editar: 'Editó', revocar: 'Revocó', eliminar: 'Eliminó' }; %>
+      <% const badgeAccion = { crear: 'badge-ok', editar: 'badge-neutral', revocar: 'badge-off', eliminar: 'badge-off' }; %>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Acción</th>
+            <th>Folio</th>
+            <th>Tipo</th>
+            <th>Nombre</th>
+            <th>Realizó</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% entradas.forEach(e => { %>
+            <tr>
+              <td><%= new Date(e.fecha).toLocaleString('es-MX') %></td>
+              <td><span class="badge <%= badgeAccion[e.accion] || 'badge-neutral' %>"><%= etiquetasAccion[e.accion] || e.accion %></span></td>
+              <td><%= e.folio || '—' %></td>
+              <td><%= e.tipo || '—' %></td>
+              <td><%= e.nombre_alumno || '—' %></td>
+              <td><%= e.realizado_por %></td>
+            </tr>
+          <% }) %>
+          <% if (entradas.length === 0) { %>
+            <tr><td colspan="6" class="empty">Aún no hay movimientos registrados.</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </main>
+  </div>
+</body>
+</html>

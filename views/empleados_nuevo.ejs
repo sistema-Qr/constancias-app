@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nuevo empleado · Sistema de Constancias</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <%- include('partials/sidebar', { empleado, activo }) %>
+
+    <main class="main-content">
+      <h2>Nuevo empleado</h2>
+
+      <% if (error) { %>
+        <div class="alert alert-error"><%= error %></div>
+      <% } %>
+
+      <form method="POST" action="/empleados/nuevo" class="form-grid">
+        <fieldset>
+          <legend>Datos de acceso</legend>
+
+          <label>Usuario *</label>
+          <input type="text" name="username" value="<%= valores.username || '' %>" required autocomplete="off" />
+
+          <label>Contraseña *</label>
+          <input type="password" name="password" required />
+
+          <label>Rol *</label>
+          <select name="rol" required>
+            <option value="usuario" <%= valores.rol === 'usuario' ? 'selected' : '' %>>Usuario normal (crea y edita constancias)</option>
+            <option value="admin" <%= valores.rol === 'admin' ? 'selected' : '' %>>Administrador (además revoca, verifica y gestiona empleados)</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Datos personales</legend>
+
+          <label>Nombre completo *</label>
+          <input type="text" name="nombre_completo" value="<%= valores.nombre_completo || '' %>" required />
+
+          <label>Puesto</label>
+          <input type="text" name="puesto" value="<%= valores.puesto || '' %>" placeholder="Control Escolar" />
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary">Crear empleado</button>
+      </form>
+    </main>
+  </div>
+</body>
+</html>
