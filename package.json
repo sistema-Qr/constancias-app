@@ -1,0 +1,26 @@
+{
+  "name": "constancias-app",
+  "version": "1.0.0",
+  "description": "Sistema de emisión y verificación de constancias académicas con código QR (Vercel + Postgres/Supabase)",
+  "main": "api/index.js",
+  "scripts": {
+    "dev": "node api/index.js",
+    "start": "node api/index.js",
+    "db:init": "node db/init.js",
+    "db:seed": "node db/seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.15.0",
+    "pg": "^8.13.0",
+    "qrcode": "^1.5.4",
+    "uuid": "^9.0.1"
+  }
+}
